@@ -1,12 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
 
-// tuple structure
-typedef struct {
-    int x;
-    int y;
-    int z;
-    int a;
-} coord;
+// TODO: Adjacency list implementation 
 
 int main(int argc, char* argv[]) {
     if (argc != 5) {
@@ -14,8 +10,31 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // TODO: Given numpoints, generate n int arrays of size n
+    int numpoints = atoi(argv[2]);
 
-    int graph[numpoints][numpoints];
+    // TODO: Heap functions
+
+    // TODO: Prim's Algorithm Implementation
+
+    int dist[numpoints];
+    // (type to be defined) prev[numpoints];
+    
+    // set of vertices (adjacency list?), initially empty
+
+    // priority heap of V
+    int heapsize = 0;
+    // H := {s: 0}
+
+    for (int i = 0; i < numpoints; i++) {
+        dist[i] = INT_MAX;
+    }
+
+    dist[0] = 0;
+
+    while (heapsize != 0) {
+        // node = deletemin(H)
+        // append vertex to S
+        // 
+    }
 
 }
