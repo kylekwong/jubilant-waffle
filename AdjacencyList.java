@@ -63,19 +63,18 @@ public class AdjacencyList
             }
         } 
 
-        System.out.println ("the given Adjacency List for the graph \n");
          for (int i = 0 ; i < number_of_vertices ; i++)
          {
              System.out.print(i+"->");
              List<Integer> edgeList = adjacencyList.getEdge(i);
-             for (int j = 1 ; ; j++ )
+             for (int j = 0 ; ; j++ )
              {
                  if (j != edgeList.size())
                  {
-                     System.out.print(edgeList.get(j - 1 )+"->");
+                     System.out.print(edgeList.get(j)+"->");
                  }else
                  {
-                     System.out.print(edgeList.get(j - 1 ));
+                     System.out.print(edgeList.get(j));
                      break;
                  }                       
              }
