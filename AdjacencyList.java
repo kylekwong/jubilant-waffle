@@ -59,12 +59,8 @@ public class AdjacencyList
     }
 
     /* Main Function creates an adjancy list for a complete graph */
-    public static void main(String...arg)
+    public static AdjacencyList init(int number_of_vertices, int number_of_coord)
     {
-        int number_of_vertices = 10;
-
-        int number_of_coord = 2;
-        
         int source, destination;
 
         VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
@@ -81,6 +77,8 @@ public class AdjacencyList
             }
         } 
         
+        return adjacencyList;
+
     /*   Testing purposes only
 
         for (int i = 0 ; i < number_of_vertices; i++)
