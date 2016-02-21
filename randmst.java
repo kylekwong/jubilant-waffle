@@ -16,8 +16,6 @@ public class randmst {
 
 		adjacencyList = adjacencyList.init(numpoints, dimension)
 
-
-
 		// begin Prim's
 		int[] dist = new int[numpoints];
 		int[] prev = new int[numpoints];
@@ -26,6 +24,22 @@ public class randmst {
 		MinBHeap heap = new MinBHeap(numpoints*numpoints);
 		heap.insert(new heapNode(0, 0, 0));
 
+		while (heap.heapSize != 0) {
+			Vertex v = heap.deletemin(); */
+			/* Add v to S */
+			List<Double> edges_of_v = adjacencyList.getEdge(v);
+
+			for(int i = 0; i < numpoints; ++i) {
+				/* if i not in S*/
+				if (dist[i] > edges_of_v.get(i)) {
+					dist[i] = edges_of_v.get(i);
+					prev[i] = i;
+					/* Insert w into heap */
+				}
+
+			}
+
+		}
 
 	}
 }

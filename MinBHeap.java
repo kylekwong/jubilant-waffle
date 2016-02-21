@@ -6,24 +6,24 @@ Implentation of Minimum Binary Heap
 **********/
  
 public class MinBHeap {
-    private heapNode[] heap;
+    private Vertex[] heap;
     private int heapSize;
 
     // creates new heap
     public MinBHeap(int size) {
-        heap = new heapNode[size];
+        heap = new Vertex[size];
         heapSize = 0;
     }
 
     // inserts new node into heap
-    public void insert(heapNode new_node) {
+    public void insert(Vertex new_node) {
         // insert at end
         heap[heapSize++] = new_node;
 
         int index = heapSize - 1;
 
         // swap until it gets to right place
-        heapNode node = heap[index];
+        Vertex node = heap[index];
         while (index > 0 && node.edge < heap[parent(index)].edge) {
             heap[index] = heap[parent(index)];
             index = parent(index);
@@ -31,8 +31,8 @@ public class MinBHeap {
         heap[index] = node;
     }
 
-    public heapNode deletemin() {
-        heapNode min = heap[0];
+    public Vertex deletemin() {
+        Vertex min = heap[0];
         heap[0] = heap[--heapSize];
         minHeapify(0);
         return min;
@@ -58,7 +58,7 @@ public class MinBHeap {
 
         // if root value is in wrong place, swap and fix
         if (smallest != root_index) {
-            heapNode temp = heap[root_index];
+            Vertex temp = heap[root_index];
             heap[root_index] = heap[smallest];
             heap[smallest] = temp;
             minHeapify(smallest);

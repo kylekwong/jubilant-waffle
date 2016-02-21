@@ -7,17 +7,17 @@ import java.lang.Math;
 public class AdjacencyList
 {
      /* Use Map collection to store adjacency list for each vertex.*/
-    private  Map<Integer, List<heapNode>> Adjacency_List;
+    private  Map<Integer, List<Vertex>> Adjacency_List;
 
      /* Initializes map  with size equal to number of vertices in a graph
      * Maps each vertex to a given List Object */
 
     public AdjacencyList(int number_of_vertices)
     {
-        Adjacency_List = new HashMap<Integer, List<heapNode>>();
+        Adjacency_List = new HashMap<Integer, List<Vertex>>();
         for (int i = 0 ; i < number_of_vertices ; i++)
         {
-            Adjacency_List.put(i, new LinkedList<heapNode>());
+            Adjacency_List.put(i, new LinkedList<Vertex>());
         }
     }
 
@@ -30,9 +30,9 @@ public class AdjacencyList
             return;
         }
 
-        List<heapNode> slist = Adjacency_List.get(source);
+        List<Vertex> slist = Adjacency_List.get(source);
         List<Double> scoord = vertexList.getCoord(source);
-        List<heapNode> dlist = Adjacency_List.get(destination);
+        List<Vertex> dlist = Adjacency_List.get(destination);
         List<Double> dcoord = vertexList.getCoord(destination);
 
         double square_sum = 0;
@@ -41,14 +41,14 @@ public class AdjacencyList
         }
         double edge = Math.sqrt(square_sum);
 
-        heapNode vertex1 = new heapNode(destination, edge);
+        Vertex vertex1 = new Vertex(destination, edge);
         slist.add(vertex1);
-        heapNode vertex2 = new heapNode(source, edge);
+        Vertex vertex2 = new Vertex(source, edge);
         dlist.add(vertex2);
     }
 
     /* Returns the List containing the vertex joining the source vertex */
-    public List<heapNode> getEdge(int source)
+    public List<Vertex> getEdge(int source)
     {
         if (source > Adjacency_List.size())
         {
@@ -83,16 +83,16 @@ public class AdjacencyList
 
         for (int i = 0 ; i < number_of_vertices; i++)
          {
-             List<heapNode> edgeList = adjacencyList.getEdge(i);
+             List<Vertex> edgeList = adjacencyList.getEdge(i);
              for (int j = 0 ; j < number_of_vertices - 1; j++ )
              {
                     if (j != number_of_vertices - 2)
                     {
-                        heapNode vertex = edgeList.get(j);
+                        Vertex vertex = edgeList.get(j);
                         System.out.print(vertex.edge + ", ");
                     } else 
                     {
-                        heapNode vertex = edgeList.get(j);
+                        Vertex vertex = edgeList.get(j);
                         System.out.print(vertex.edge);
                     }              
              }
