@@ -41,9 +41,9 @@ public class AdjacencyList
         }
         double edge = Math.sqrt(square_sum);
 
-        heapNode vertex1 = new heapNode(source, destination, edge);
+        heapNode vertex1 = new heapNode(destination, edge);
         slist.add(vertex1);
-        heapNode vertex2 = new heapNode(destination, source, edge);
+        heapNode vertex2 = new heapNode(source, edge);
         dlist.add(vertex2);
     }
 

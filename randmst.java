@@ -12,8 +12,20 @@ public class randmst {
 		int numtrials = Integer.parseInt(args[2]);
 		int dimension = Integer.parseInt(args[3]);
 
+		AdjacencyList adjacencyList = new AdjacencyList(numpoints);
+
+		adjacencyList = adjacencyList.init(numpoints, dimension)
+
+
+
 		// begin Prim's
 		int[] dist = new int[numpoints];
-		prev = new 
+		int[] prev = new int[numpoints];
+
+		int[] s = new int[numpoints];
+		MinBHeap heap = new MinBHeap(numpoints*numpoints);
+		heap.insert(new heapNode(0, 0, 0));
+
+
 	}
 }
