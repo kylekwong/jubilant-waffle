@@ -11,5 +11,9 @@ public class randmst {
 		int numpoints = Integer.parseInt(args[1]);
 		int numtrials = Integer.parseInt(args[2]);
 		int dimension = Integer.parseInt(args[3]);
+
+		// begin Prim's
+		int[] dist = new int[numpoints];
+		prev = new 
 	}
 }
