@@ -6,13 +6,6 @@ import java.lang.Math;
 
 public class AdjacencyList
 {
-  
-    int number_of_vertices;
-
-    int number_of_coord;
-
-    VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
-
      /* Use Map collection to store adjacency list for each vertex.*/
     private  Map<Integer, List<heapNode>> Adjacency_List;
 
@@ -28,9 +21,8 @@ public class AdjacencyList
         }
     }
 
-
     /* Adds nodes in the Adjacency list for the corresponding vertex */
-    public void setEdge(int source , int destination)
+    public void setEdge(int source , int destination, VertexList vertexList, int number_of_coord)
     {
         if (source > Adjacency_List.size() || destination > Adjacency_List.size())
         {
@@ -77,7 +69,7 @@ public class AdjacencyList
 
         VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
 
-        vertexList = vertexList.init();
+        vertexList = vertexList.init(number_of_vertices, number_of_coord);
         
         AdjacencyList adjacencyList = new AdjacencyList(number_of_vertices);
 
@@ -85,10 +77,11 @@ public class AdjacencyList
             for (int j = i + 1; j < number_of_vertices; ++j) {
                 source = i;
                 destination = j;
-                adjacencyList.setEdge(source, destination);
+                adjacencyList.setEdge(source, destination, vertexList, number_of_coord);
             }
         } 
         
+    /*   Testing purposes only
 
         for (int i = 0 ; i < number_of_vertices; i++)
          {
@@ -106,9 +99,9 @@ public class AdjacencyList
                     }              
              }
              System.out.println();                  
-          } 
+        } 
 
-        /*for (int i = 0 ; i < number_of_vertices ; i++)
+        for (int i = 0 ; i < number_of_vertices ; i++)
          {
              List<Double> edgeList = vertexList.getCoord(i);
              for (int j = 0 ; j < number_of_coord ; j++ )

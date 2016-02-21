@@ -46,13 +46,9 @@ public class VertexList
     }
 
     /* Main Function creates an adjancy list for a complete graph */
-    public static VertexList init()
+    public static VertexList init(int number_of_vertices, int number_of_coord)
     {
         double coord;
-
-        int number_of_vertices = 10;
-
-        int number_of_coord = 2;
 
         VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
 
@@ -64,6 +60,7 @@ public class VertexList
         } 
         
         return vertexList;
+
          /*for (int i = 0 ; i < number_of_vertices ; i++)
          {
              List<Double> edgeList = vertexList.getCoord(i);
