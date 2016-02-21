@@ -2,21 +2,29 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.lang.Math;
 
 public class AdjacencyList
 {
-    /* Use Map collection to store adjacency list for each vertex.*/
-    private  Map<Integer, List<Integer>> Adjacency_List;
+  
+    int number_of_vertices;
+
+    int number_of_coord;
+
+    VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
+
+     /* Use Map collection to store adjacency list for each vertex.*/
+    private  Map<Integer, List<heapNode>> Adjacency_List;
 
      /* Initializes map  with size equal to number of vertices in a graph
      * Maps each vertex to a given List Object */
 
     public AdjacencyList(int number_of_vertices)
     {
-        Adjacency_List = new HashMap<Integer, List<Integer>>();
+        Adjacency_List = new HashMap<Integer, List<heapNode>>();
         for (int i = 0 ; i < number_of_vertices ; i++)
         {
-            Adjacency_List.put(i, new LinkedList<Integer>());
+            Adjacency_List.put(i, new LinkedList<heapNode>());
         }
     }
 
@@ -29,14 +37,26 @@ public class AdjacencyList
             /*System.out.println("the vertex entered in not present "); */
             return;
         }
-        List<Integer> slist = Adjacency_List.get(source);
-        slist.add(destination);
-        List<Integer> dlist = Adjacency_List.get(destination);
-        dlist.add(source);
+
+        List<heapNode> slist = Adjacency_List.get(source);
+        List<Double> scoord = vertexList.getCoord(source);
+        List<heapNode> dlist = Adjacency_List.get(destination);
+        List<Double> dcoord = vertexList.getCoord(destination);
+
+        double square_sum = 0;
+        for (int i = 0; i < number_of_coord; ++i) {
+            square_sum = square_sum + Math.pow((scoord.get(i)- dcoord.get(i)),2);
+        }
+        double edge = Math.sqrt(square_sum);
+
+        heapNode vertex1 = new heapNode(source, destination, edge);
+        slist.add(vertex1);
+        heapNode vertex2 = new heapNode(destination, source, edge);
+        dlist.add(vertex2);
     }
 
     /* Returns the List containing the vertex joining the source vertex */
-    public List<Integer> getEdge(int source)
+    public List<heapNode> getEdge(int source)
     {
         if (source > Adjacency_List.size())
         {
@@ -49,9 +69,15 @@ public class AdjacencyList
     /* Main Function creates an adjancy list for a complete graph */
     public static void main(String...arg)
     {
+        int number_of_vertices = 10;
+
+        int number_of_coord = 2;
+        
         int source, destination;
 
-        int number_of_vertices = 10;
+        VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
+
+        vertexList = vertexList.init();
         
         AdjacencyList adjacencyList = new AdjacencyList(number_of_vertices);
 
@@ -62,23 +88,41 @@ public class AdjacencyList
                 adjacencyList.setEdge(source, destination);
             }
         } 
+        
 
-         for (int i = 0 ; i < number_of_vertices ; i++)
+        for (int i = 0 ; i < number_of_vertices; i++)
          {
-             System.out.print(i+"->");
-             List<Integer> edgeList = adjacencyList.getEdge(i);
-             for (int j = 0 ; ; j++ )
+             List<heapNode> edgeList = adjacencyList.getEdge(i);
+             for (int j = 0 ; j < number_of_vertices - 1; j++ )
              {
-                 if (j != edgeList.size())
+                    if (j != number_of_vertices - 2)
+                    {
+                        heapNode vertex = edgeList.get(j);
+                        System.out.print(vertex.edge + ", ");
+                    } else 
+                    {
+                        heapNode vertex = edgeList.get(j);
+                        System.out.print(vertex.edge);
+                    }              
+             }
+             System.out.println();                  
+          } 
+
+        /*for (int i = 0 ; i < number_of_vertices ; i++)
+         {
+             List<Double> edgeList = vertexList.getCoord(i);
+             for (int j = 0 ; j < number_of_coord ; j++ )
+             {
+                 if (j != number_of_coord - 1)
                  {
-                     System.out.print(edgeList.get(j)+"->");
-                 }else
+                     System.out.print(edgeList.get(j)+", ");
+                 } else
                  {
                      System.out.print(edgeList.get(j));
                      break;
                  }                       
              }
              System.out.println();                  
-          }
+          } */
     }
 }
