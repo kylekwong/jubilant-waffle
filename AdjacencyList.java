@@ -44,7 +44,7 @@ public class AdjacencyList
 
             edge = Math.sqrt(square_sum);
         } else {
-            edge = Math.random()
+            edge = Math.random();
         }
         
         Vertex vertex1 = new Vertex(destination, edge);

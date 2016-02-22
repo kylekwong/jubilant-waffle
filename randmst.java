@@ -18,52 +18,57 @@ public class randmst {
 		int numtrials = Integer.parseInt(args[2]);
 		int dimension = Integer.parseInt(args[3]);
 
-		// add to final weight of MST
-		double weight = 0.0;
-		AdjacencyList adjacencyList = new AdjacencyList(numpoints);
+		double avg_weight = 0.0;
 
-		adjacencyList = adjacencyList.init(numpoints, dimension);
+		for (int n = 0; n < numtrials; n++) {
+			// add to final weight of MST
+			double weight = 0.0;
+			AdjacencyList adjacencyList = new AdjacencyList(numpoints);
 
-		// begin Prim's
-		double[] dist = new double[numpoints];
-		int[] prev = new int[numpoints];
+			adjacencyList = adjacencyList.init(numpoints, dimension);
 
-		// s[0] == true means vertex 0 is in S
-		boolean[] s = new boolean[numpoints];
-		Arrays.fill(s, false);
+			// begin Prim's
+			double[] dist = new double[numpoints];
+			int[] prev = new int[numpoints];
 
-		MinBHeap heap = new MinBHeap(numpoints);
-		heap.insert(new Vertex(0, 0.0));
+			// s[0] == true means vertex 0 is in S
+			boolean[] s = new boolean[numpoints];
+			Arrays.fill(s, false);
 
-		// initialize dist and prev arrays
-		for (int i = 0; i < numpoints; i++) {
-			dist[i] = Double.MAX_VALUE;
-			prev[i] = -1;
-		}
+			MinBHeap heap = new MinBHeap(numpoints);
+			heap.insert(new Vertex(0, 0.0));
 
-		while (heap.heapSize != 0) {
-			Vertex v = heap.deletemin(); 
+			// initialize dist and prev arrays
+			for (int i = 0; i < numpoints; i++) {
+				dist[i] = Double.MAX_VALUE;
+				prev[i] = -1;
+			}
 
-			// adds v to S
-			s[v.v] = true;
-			weight += v.edge;
+			while (heap.heapSize != 0) {
+				Vertex v = heap.deletemin(); 
 
-			List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+				// adds v to S
+				s[v.v] = true;
+				weight += v.edge;
 
-			for(int i = 0; i < numpoints-1; ++i) {
-				// if i not in S
-				if (!s[i]) {
-					if (dist[i] > (edges_of_v.get(i)).edge) {
-						dist[i] = (edges_of_v.get(i)).edge;
-						prev[i] = i;
-						/* Insert w into heap */
-						heap.insert(new Vertex(i, dist[i]));
+				List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+
+				for(int i = 0; i < numpoints-1; ++i) {
+					// if i not in S
+					if (!s[i]) {
+						if (dist[i] > (edges_of_v.get(i)).edge) {
+							dist[i] = (edges_of_v.get(i)).edge;
+							prev[i] = i;
+							/* Insert w into heap */
+							heap.insert(new Vertex(i, dist[i]));
+						}
 					}
 				}
 			}
+			avg_weight += weight;
 		}
-
-		System.out.println(weight);
-
+		avg_weight /= numtrials;
+		System.out.printf("%f %d %d %d\n", avg_weight, numpoints, numtrials, 
+			dimension);
 	}
 }
