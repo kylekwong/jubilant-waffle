@@ -20,6 +20,8 @@ public class randmst {
 
 		double avg_weight = 0.0;
 
+		double maxLength = 0; 
+
 		for (int n = 0; n < numtrials; n++) {
 			// add to final weight of MST
 			double weight = 0.0;
@@ -50,6 +52,9 @@ public class randmst {
 				// adds v to S
 				s[v.v] = true;
 				weight += v.edge;
+				if (v.edge > maxLength) {
+					maxLength = v.edge;
+				}
 
 				List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
 
@@ -61,6 +66,7 @@ public class randmst {
 							prev[w.v] = w.v;
 							/* Insert w into heap */
 							heap.insert(new Vertex(w.v, dist[w.v]));
+
 						}
 					}
 				}
@@ -68,7 +74,7 @@ public class randmst {
 			avg_weight += weight;
 		}
 		avg_weight /= numtrials;
-		System.out.printf("%f %d %d %d\n", avg_weight, numpoints, numtrials, 
-			dimension);
+		System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, numtrials, 
+			dimension, maxLength);
 	}
 }

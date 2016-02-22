@@ -47,10 +47,12 @@ public class AdjacencyList
             edge = Math.random();
         }
         
-        Vertex vertex1 = new Vertex(destination, edge);
-        slist.add(vertex1);
-        Vertex vertex2 = new Vertex(source, edge);
-        dlist.add(vertex2);
+        if (edge < 0.6) {
+            Vertex vertex1 = new Vertex(destination, edge);
+            slist.add(vertex1);
+            Vertex vertex2 = new Vertex(source, edge);
+            dlist.add(vertex2);
+        }
     }
 
     /* Returns the List containing the vertex joining the source vertex */
