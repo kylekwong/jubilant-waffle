@@ -22,9 +22,11 @@ public class AdjacencyList
     }
 
     /* Adds nodes in the Adjacency list for the corresponding vertex */
-    public void setEdge(int source , int destination, VertexList vertexList, int number_of_coord, int number_of_vertices)
+    public void setEdge(int source , int destination, VertexList vertexList, 
+        int number_of_coord, int number_of_vertices)
     {
-        if (source > Adjacency_List.size() || destination > Adjacency_List.size())
+        if (source > Adjacency_List.size() || 
+            destination > Adjacency_List.size())
         {
             /*System.out.println("the vertex entered in not present "); */
             return;
@@ -46,28 +48,103 @@ public class AdjacencyList
         } else {
             edge = Math.random();
         }
-        
-        if (number_of_vertices > 4096) {
-            if (edge < 0.05) {
-                Vertex vertex1 = new Vertex(destination, edge);
-                slist.add(vertex1);
-                Vertex vertex2 = new Vertex(source, edge);
-                dlist.add(vertex2);
+        if (number_of_coord == 2) {
+            if (number_of_vertices > 32768) {
+                if (edge < 0.01) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 16384) {
+                if (edge < 0.02) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 8192) {
+                if (edge < 0.03) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 4096) {
+                if (edge < 0.05) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 512) {
+                if (edge < 0.1) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            } else { 
+                if (edge < 0.6) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
             }
         }
-        else if (number_of_vertices > 512) {
-            if (edge < 0.1) {
-                Vertex vertex1 = new Vertex(destination, edge);
-                slist.add(vertex1);
-                Vertex vertex2 = new Vertex(source, edge);
-                dlist.add(vertex2);
+        else if (number_of_coord == 4) {
+            // if (number_of_vertices > 32768) {
+            //     if (edge < 0.01) {
+            //         Vertex vertex1 = new Vertex(destination, edge);
+            //         slist.add(vertex1);
+            //         Vertex vertex2 = new Vertex(source, edge);
+            //         dlist.add(vertex2);
+            //     }
+            // }
+            if (number_of_vertices > 16384) {
+                if (edge < 0.16) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
             }
-        } else { 
-            if (edge < 0.6) {
-                Vertex vertex1 = new Vertex(destination, edge);
-                slist.add(vertex1);
-                Vertex vertex2 = new Vertex(source, edge);
-                dlist.add(vertex2);
+            else if (number_of_vertices > 8192) {
+                if (edge < 0.18) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 4096) {
+                if (edge < 0.2) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 512) {
+                if (edge < 0.3) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            } else { 
+                if (edge < 0.75) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
         }
     }
 
@@ -97,47 +174,11 @@ public class AdjacencyList
             for (int j = i + 1; j < number_of_vertices; ++j) {
                 source = i;
                 destination = j;
-                adjacencyList.setEdge(source, destination, vertexList, number_of_coord, number_of_vertices);
+                adjacencyList.setEdge(source, destination, vertexList, 
+                    number_of_coord, number_of_vertices);
             }
         } 
         
         return adjacencyList;
-
-    /*   Testing purposes only
-
-        for (int i = 0 ; i < number_of_vertices; i++)
-         {
-             List<Vertex> edgeList = adjacencyList.getEdge(i);
-             for (int j = 0 ; j < number_of_vertices - 1; j++ )
-             {
-                    if (j != number_of_vertices - 2)
-                    {
-                        Vertex vertex = edgeList.get(j);
-                        System.out.print(vertex.edge + ", ");
-                    } else 
-                    {
-                        Vertex vertex = edgeList.get(j);
-                        System.out.print(vertex.edge);
-                    }              
-             }
-             System.out.println();                  
-        } 
-
-        for (int i = 0 ; i < number_of_vertices ; i++)
-         {
-             List<Double> edgeList = vertexList.getCoord(i);
-             for (int j = 0 ; j < number_of_coord ; j++ )
-             {
-                 if (j != number_of_coord - 1)
-                 {
-                     System.out.print(edgeList.get(j)+", ");
-                 } else
-                 {
-                     System.out.print(edgeList.get(j));
-                     break;
-                 }                       
-             }
-             System.out.println();                  
-          } */
     }
 }
