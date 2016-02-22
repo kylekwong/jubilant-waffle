@@ -12,7 +12,7 @@ public class VertexList
     private  Map<Integer, List<Double>> Vertex_List;
 
      /* Initializes map  with size equal to number of vertices in a graph
-     * Maps each vertex to a given List Object which will be the coordinates */
+     * Maps each vertex to a given List  which will be the coordinates */
     public VertexList(int number_of_vertices, int number_of_coord)
     {
         Vertex_List = new HashMap<Integer, List<Double>>();
@@ -27,7 +27,6 @@ public class VertexList
     {
         if (vertex > Vertex_List.size())
         {
-            /*System.out.println("the vertex entered in not present "); */
             return;
         }
         List<Double> vlist = Vertex_List.get(vertex);
@@ -39,7 +38,6 @@ public class VertexList
     {
         if (vertex > Vertex_List.size())
         {
-            /* System.out.println("the vertex entered is not present"); */
             return null;
         }
         return Vertex_List.get(vertex);
@@ -60,22 +58,5 @@ public class VertexList
         } 
         
         return vertexList;
-
-         /*for (int i = 0 ; i < number_of_vertices ; i++)
-         {
-             List<Double> edgeList = vertexList.getCoord(i);
-             for (int j = 0 ; j < number_of_coord ; j++ )
-             {
-                 if (j != number_of_coord - 1)
-                 {
-                     System.out.print(edgeList.get(j)+", ");
-                 } else
-                 {
-                     System.out.print(edgeList.get(j));
-                     break;
-                 }                       
-             }
-             System.out.println();                  
-          } */
     }
 }
