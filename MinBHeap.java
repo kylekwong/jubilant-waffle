@@ -120,15 +120,4 @@ public class MinBHeap {
         System.out.println();
     }
 
-    public static void main(String[] args) {
-        // Testing Purposes
-        // MinBHeap mbh = new MinBHeap(5);
-        // mbh.insert(new Vertex(0, 4));
-        // mbh.insert(new Vertex(1, 3));
-        // mbh.insert(new Vertex(2, 1));
-        // mbh.insert(new Vertex(3, 0));
-        // mbh.insert(new Vertex(4, 2));
-        // mbh.insert(new Vertex(4, 0));
-        // mbh.printHeap();
-    }
 }
