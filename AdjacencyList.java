@@ -7,7 +7,7 @@ import java.lang.Math;
 public class AdjacencyList
 {
      /* Use Map collection to store adjacency list for each vertex.*/
-    private  Map<Integer, List<Vertex>> Adjacency_List;
+    private Map<Integer, List<Vertex>> Adjacency_List;
 
      /* Initializes map  with size equal to number of vertices in a graph
      * Maps each vertex to a given List Object */
