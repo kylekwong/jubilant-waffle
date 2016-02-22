@@ -63,10 +63,11 @@ public class AdjacencyList
                 dlist.add(vertex2);
             }
         } else { 
-            Vertex vertex1 = new Vertex(destination, edge);
-            slist.add(vertex1);
-            Vertex vertex2 = new Vertex(source, edge);
-            dlist.add(vertex2);
+            if (edge < 0.6) {
+                Vertex vertex1 = new Vertex(destination, edge);
+                slist.add(vertex1);
+                Vertex vertex2 = new Vertex(source, edge);
+                dlist.add(vertex2);
         }
     }
 
