@@ -22,7 +22,7 @@ public class AdjacencyList
     }
 
     /* Adds nodes in the Adjacency list for the corresponding vertex */
-    public void setEdge(int source , int destination, VertexList vertexList, int number_of_coord)
+    public void setEdge(int source , int destination, VertexList vertexList, int number_of_coord, int number_of_vertices)
     {
         if (source > Adjacency_List.size() || destination > Adjacency_List.size())
         {
@@ -47,7 +47,22 @@ public class AdjacencyList
             edge = Math.random();
         }
         
-        if (edge < 0.6) {
+        if (number_of_vertices > 4096) {
+            if (edge < 0.05) {
+                Vertex vertex1 = new Vertex(destination, edge);
+                slist.add(vertex1);
+                Vertex vertex2 = new Vertex(source, edge);
+                dlist.add(vertex2);
+            }
+        }
+        else if (number_of_vertices > 512) {
+            if (edge < 0.1) {
+                Vertex vertex1 = new Vertex(destination, edge);
+                slist.add(vertex1);
+                Vertex vertex2 = new Vertex(source, edge);
+                dlist.add(vertex2);
+            }
+        } else { 
             Vertex vertex1 = new Vertex(destination, edge);
             slist.add(vertex1);
             Vertex vertex2 = new Vertex(source, edge);
@@ -81,7 +96,7 @@ public class AdjacencyList
             for (int j = i + 1; j < number_of_vertices; ++j) {
                 source = i;
                 destination = j;
-                adjacencyList.setEdge(source, destination, vertexList, number_of_coord);
+                adjacencyList.setEdge(source, destination, vertexList, number_of_coord, number_of_vertices);
             }
         } 
         
