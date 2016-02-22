@@ -53,14 +53,14 @@ public class randmst {
 
 				List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
 
-				for(int i = 0; i < numpoints-1; ++i) {
+				for(Vertex w : edges_of_v) {
 					// if i not in S
-					if (!s[i]) {
-						if (dist[i] > (edges_of_v.get(i)).edge) {
-							dist[i] = (edges_of_v.get(i)).edge;
-							prev[i] = i;
+					if (!s[w.v]) {
+						if (dist[w.v] > w.edge) {
+							dist[w.v] = w.edge;
+							prev[w.v] = w.v;
 							/* Insert w into heap */
-							heap.insert(new Vertex(i, dist[i]));
+							heap.insert(new Vertex(w.v, dist[w.v]));
 						}
 					}
 				}
