@@ -47,7 +47,7 @@ public class AdjacencyList
             edge = Math.random();
         }
         
-        if (edge < 0.6) {
+        if (edge < 0.9) {
             Vertex vertex1 = new Vertex(destination, edge);
             slist.add(vertex1);
             Vertex vertex2 = new Vertex(source, edge);

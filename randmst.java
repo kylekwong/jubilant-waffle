@@ -22,59 +22,124 @@ public class randmst {
 
 		double maxLength = 0; 
 
-		for (int n = 0; n < numtrials; n++) {
-			// add to final weight of MST
-			double weight = 0.0;
-			AdjacencyList adjacencyList = new AdjacencyList(numpoints);
+		if (flag == 0) {
+			for (int n = 0; n < numtrials; n++) {
+				// add to final weight of MST
+				double weight = 0.0;
+				AdjacencyList adjacencyList = new AdjacencyList(numpoints);
 
-			adjacencyList = adjacencyList.init(numpoints, dimension);
+				adjacencyList = adjacencyList.init(numpoints, dimension);
 
-			// begin Prim's
-			double[] dist = new double[numpoints];
-			int[] prev = new int[numpoints];
+				// begin Prim's
+				double[] dist = new double[numpoints];
+				int[] prev = new int[numpoints];
 
-			// s[0] == true means vertex 0 is in S
-			boolean[] s = new boolean[numpoints];
-			Arrays.fill(s, false);
+				// s[0] == true means vertex 0 is in S
+				boolean[] s = new boolean[numpoints];
+				Arrays.fill(s, false);
 
-			MinBHeap heap = new MinBHeap(numpoints);
-			heap.insert(new Vertex(0, 0.0));
+				MinBHeap heap = new MinBHeap(numpoints);
+				heap.insert(new Vertex(0, 0.0));
 
-			// initialize dist and prev arrays
-			for (int i = 0; i < numpoints; i++) {
-				dist[i] = Double.MAX_VALUE;
-				prev[i] = -1;
-			}
-
-			while (heap.heapSize != 0) {
-				Vertex v = heap.deletemin(); 
-
-				// adds v to S
-				s[v.v] = true;
-				weight += v.edge;
-				if (v.edge > maxLength) {
-					maxLength = v.edge;
+				// initialize dist and prev arrays
+				for (int i = 0; i < numpoints; i++) {
+					dist[i] = Double.MAX_VALUE;
+					prev[i] = -1;
 				}
 
-				List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+				while (heap.heapSize != 0) {
+					Vertex v = heap.deletemin(); 
 
-				for(Vertex w : edges_of_v) {
-					// if i not in S
-					if (!s[w.v]) {
-						if (dist[w.v] > w.edge) {
-							dist[w.v] = w.edge;
-							prev[w.v] = w.v;
-							/* Insert w into heap */
-							heap.insert(new Vertex(w.v, dist[w.v]));
+					// adds v to S
+					s[v.v] = true;
+					weight += v.edge;
+					if (v.edge > maxLength) {
+						maxLength = v.edge;
+					}
 
+					List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+
+					for(Vertex w : edges_of_v) {
+						// if i not in S
+						if (!s[w.v]) {
+							if (dist[w.v] > w.edge) {
+								dist[w.v] = w.edge;
+								prev[w.v] = w.v;
+								/* Insert w into heap */
+								heap.insert(new Vertex(w.v, dist[w.v]));
+
+							}
 						}
 					}
 				}
+				avg_weight += weight;
 			}
-			avg_weight += weight;
+			avg_weight /= numtrials;
+			System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, 
+				numtrials, dimension, maxLength);
+
 		}
-		avg_weight /= numtrials;
-		System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, numtrials, 
-			dimension, maxLength);
+
+		else if (flag == 1) {
+			while (numpoints <= 65536) {
+				maxLength = 0;
+				for (int n = 0; n < numtrials; n++) {
+					// add to final weight of MST
+					double weight = 0.0;
+					AdjacencyList adjacencyList = new AdjacencyList(numpoints);
+
+					adjacencyList = adjacencyList.init(numpoints, dimension);
+
+					// begin Prim's
+					double[] dist = new double[numpoints];
+					int[] prev = new int[numpoints];
+
+					// s[0] == true means vertex 0 is in S
+					boolean[] s = new boolean[numpoints];
+					Arrays.fill(s, false);
+
+					MinBHeap heap = new MinBHeap(numpoints);
+					heap.insert(new Vertex(0, 0.0));
+
+					// initialize dist and prev arrays
+					for (int i = 0; i < numpoints; i++) {
+						dist[i] = Double.MAX_VALUE;
+						prev[i] = -1;
+					}
+
+					while (heap.heapSize != 0) {
+						Vertex v = heap.deletemin(); 
+
+						// adds v to S
+						s[v.v] = true;
+						weight += v.edge;
+						if (v.edge > maxLength) {
+							maxLength = v.edge;
+						}
+
+						List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+
+						for(Vertex w : edges_of_v) {
+							// if i not in S
+							if (!s[w.v]) {
+								if (dist[w.v] > w.edge) {
+									dist[w.v] = w.edge;
+									prev[w.v] = w.v;
+									/* Insert w into heap */
+									heap.insert(new Vertex(w.v, dist[w.v]));
+
+								}
+							}
+						}
+					}
+					avg_weight += weight;
+				}
+				avg_weight /= numtrials;
+				System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, 
+					numtrials, dimension, maxLength);
+
+				numpoints *= 2;
+			}
+		}
 	}
 }
