@@ -50,7 +50,7 @@ public class AdjacencyList
         }
 
         if (number_of_coord == 0) {    
-            if (number_of_vertices > 32768) {
+                if (number_of_vertices > 32768) {
                     if (edge < 0.0005) {
                         Vertex vertex1 = new Vertex(destination, edge);
                         slist.add(vertex1);
@@ -58,7 +58,7 @@ public class AdjacencyList
                         dlist.add(vertex2);
                     }
                 }
-                if (number_of_vertices > 8192) {
+                else if (number_of_vertices > 8192) {
                     if (edge < 0.001) {
                         Vertex vertex1 = new Vertex(destination, edge);
                         slist.add(vertex1);
@@ -66,7 +66,31 @@ public class AdjacencyList
                         dlist.add(vertex2);
                     }
                 }
-                if (number_of_vertices > 1024) {
+                else if (number_of_vertices > 4092) {
+                    if (edge < 0.003) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 2048) {
+                    if (edge < 0.005) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 1024) {
+                    if (edge < 0.01) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 1024) {
                     if (edge < 0.01) {
                         Vertex vertex1 = new Vertex(destination, edge);
                         slist.add(vertex1);
@@ -90,7 +114,7 @@ public class AdjacencyList
                     }
                 }
             }
-        if (number_of_coord == 2) {
+        else if (number_of_coord == 2) {
             if (number_of_vertices > 32768) {
                 if (edge < 0.01) {
                     Vertex vertex1 = new Vertex(destination, edge);

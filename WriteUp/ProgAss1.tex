@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+% \pagestyle{empty}
+
+\setlength{\oddsidemargin}{-0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.9 in}
+\setlength{\textwidth}{7.0 in}
+\setlength{\textheight}{9.0 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.3 in}
+\setlength{\parskip}{0.1 in}
+\usepackage{epsf}
+\usepackage{pseudocode}
+\usepackage{listings}
+\usepackage{amsmath}
+
+% \usepackage{times}
+% \usepackage{mathptm}
+
+\def\O{\mathop{\smash{O}}\nolimits}
+\def\o{\mathop{\smash{o}}\nolimits}
+\newcommand{\e}{{\rm e}}
+\newcommand{\R}{{\bf R}}
+\newcommand{\Z}{{\bf Z}}
+
+\begin{document}
+CS124 Programming Assignment: Ben Anandappa and Kyle Kwong \newline
+
+\textbf{RESULTS}
+
+\textbf{Dimension = 0}
+$$
+\begin{array}{c|c}
+n & f(n)  \\ \hline
+16 & 1.287811 \\ \hline
+32 & 1.566054 \\ \hline
+64 & 1.497568 \\ \hline
+128 & 1.408702 \\ \hline
+256 & 1.51272 \\ \hline
+512 & 1.491951 \\ \hline
+1024 & 1.518965 \\ \hline
+2048 & 1.521151 \\ \hline
+4096 & 1.51782 \\ \hline
+8192 & 1.207898 \\ \hline
+16384 & 1.438853 \\ \hline
+32768 & 1.490328 \\ \hline
+65536 & 1.500143 \\ \hline
+\end{array}
+$$
+
+Excluding the outliers f(16) and f(8192), the average of f(n) is 1.5003. The function g(n) = 1.5003 is a good approximation of f(n).
+
+\textbf{Dimension = 2}
+$$
+\begin{array}{c|c|c|c|c}
+n & f(n) & n^{1/2} & f(n)/n^{1/2}  & 0.7614 * n^{1/2} \\ \hline 
+16 & 2.788859 & 4 & 0.69721475  & 3.0456\\ \hline
+32 & 4.301632 &  5.656854249 & 0.760428289 & 4.307128826 \\ \hline
+64 & 6.168682  & 8 & 0.77108525 & 6.0912\\ \hline
+128 & 8.884378 & 11.3137085 &0.785275491 & 8.614257651\\ \hline
+256 & 12.442919 & 16 & 0.777682438 & 12.1824\\ \hline
+512 & 17.561265  & 22.627417 &0.776105598 & 17.2285153\\ \hline
+1024 & 24.772576 & 32 & 0.774143 & 24.3648 \\ \hline
+2048 & 34.409645  & 45.254834 & 0.760352916 & 34.4570306 \\ \hline
+4096 & 48.564183 & 64 & 0.758815359 & 48.7296 \\ \hline
+8192 & 68.625559 & 90.50966799 & 0.758212471 & 68.91406121 \\ \hline
+16384 & 96.942668 & 128 & 0.757364594 & 97.4592\\ \hline
+32768 & 136.844034 & 181.019336 & 0.755963628 & 137.8281224 \\ \hline
+65536 & 196.010885 & 256 & 0.76566752 & 194.9184 \\ \hline
+\end{array}
+$$
+The average of $f(n)/n^{1/2}$ is 0.7614, so as we can see from the table, we can approximate f(n) as g(n) = $0.7614*n^{1/2}$. We figured this out by looking a graph of f(n)  vs n and noticing that it looks very similar to a square root graph. 
+
+\textbf{Dimension = 3}
+$$
+\begin{array}{c|c|c|c|c}
+n & f(n) & n^{2/3} & f(n)/n^{2/3}  & 0.766 * n^{2/3} \\ \hline 
+16 & 4.743462 & 6.349604208 & 0.747048453 & 4.863796823\\ \hline
+32 & 7.820685 & 10.0793684 & 0.775910225 & 7.720796194\\ \hline
+64 & 12.842705 &16 & 0.802669063 &12.256\\ \hline
+128 & 20.19819 & 25.39841683 & 0.795253898&19.45518729\\ \hline
+256 & 31.599015 & 40.3174736 & 0.783754838 & 30.88318478\\ \hline
+512 & 49.245631 & 64 & 0.769462984 & 49.024\\ \hline
+1024 & 77.736074 & 101.5936673 & 0.765166531 & 77.82074917 \\ \hline
+2048 & 122.8152 & 161.2698944 & 0.761550694 & 123.5327391\\ \hline
+4096 & 193.923037 & 256 & 0.757511863 & 196.096\\ \hline
+8192 & 305.780897 &406.3746693 & 0.752460525 &311.2829967\\ \hline
+16384 & 483.547002 & 645.0795775 &0.749592793 & 494.1309564 \\ \hline
+32768 & 765.19601 & 1024 & 0.747261729 & 784.384\\ \hline
+65536 & 1211.697603 & 1625.498677 & 0.745431307 & 1245.131987\\ \hline
+\end{array}
+$$
+By graphing it, we saw that f(n) grew slower than linear but faster than $n^{1/2}$ so we guessed $n^{2/3}$. The average of $f(n)/n^{2/3}$ is 0.766, and we can see that g(n) = 0.766 * $n^{2/3}$ is a good approximation of f(n)
+
+\textbf{Dimension = 4}
+$$
+\begin{array}{c|c|c|c|c}
+n & f(n) & n^{3/4} & f(n)/n^{3/4}  & 0.8123 * n^{3/4} \\ \hline 
+16 & 5.980992 & 8 & 0.747624  & 6.4984\\ \hline
+32 & 11.602174 &  13.45434264 & 0.862336742 & 10.92896253 \\ \hline
+64 & 19.671795  & 22.627417 & 0.869378728 & 18.38025083\\ \hline
+128 & 31.514738 & 38.05462768 & 0.828144694 & 30.91177406\\ \hline
+256 & 53.1891 & 64 & 0.831079688 & 51.9872\\ \hline
+512 & 89.476336  & 107.6347412  & 0.831296058 & 87.43170024\\ \hline
+1024 & 148.533202 & 181.019336 & 0.820537768 & 147.0420066 \\ \hline
+2048 & 246.27943  & 304.4370214 & 0.808966757 & 247.2941925 \\ \hline
+4096 & 410.523811 & 512 & 0.801804318 & 415.8976 \\ \hline
+8192 & 685.939253 & 861.0779292 & 0.796605313 & 699.4536019 \\ \hline
+16384 & 1145.321887 & 1448.154688 & 0.790883665 & 1176.336053\\ \hline
+32768 & 1917.845048 & 2435.496172 & 0.787455579 & 1978.35354 \\ \hline
+65536 & 3210.352736 & 4096 & 0.783777523 & 3327.1808 \\ \hline
+\end{array}
+$$
+By similar logic, we saw that f(n) is slower than linear but faster than $n^{2/3}$ so we guessed $n^{3/4}$. The average of $f(n)/n^{3/4}$ is 0.8123, and we can see that g(n) = 0.8123 * $n^{3/4}$ is a good approximation of f(n)
+\newpage
+\textbf{DISCUSSION}
+
+\end{document}
+
+
+
+
+
