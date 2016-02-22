@@ -29,18 +29,24 @@ public class AdjacencyList
             /*System.out.println("the vertex entered in not present "); */
             return;
         }
+            double edge; 
+            List<Vertex> slist = Adjacency_List.get(source);
+            List<Vertex> dlist = Adjacency_List.get(destination);
+        
+        if (number_of_coord != 0) {
+            List<Double> scoord = vertexList.getCoord(source);
+            List<Double> dcoord = vertexList.getCoord(destination);
 
-        List<Vertex> slist = Adjacency_List.get(source);
-        List<Double> scoord = vertexList.getCoord(source);
-        List<Vertex> dlist = Adjacency_List.get(destination);
-        List<Double> dcoord = vertexList.getCoord(destination);
+            double square_sum = 0;
+            for (int i = 0; i < number_of_coord; ++i) {
+                square_sum += Math.pow((scoord.get(i)- dcoord.get(i)),2);
+            }
 
-        double square_sum = 0;
-        for (int i = 0; i < number_of_coord; ++i) {
-            square_sum = square_sum + Math.pow((scoord.get(i)- dcoord.get(i)),2);
+            edge = Math.sqrt(square_sum);
+        } else {
+            edge = Math.random()
         }
-        double edge = Math.sqrt(square_sum);
-
+        
         Vertex vertex1 = new Vertex(destination, edge);
         slist.add(vertex1);
         Vertex vertex2 = new Vertex(source, edge);
