@@ -22,6 +22,8 @@ public class AdjacencyList
     }
 
     /* Adds nodes in the Adjacency list for the corresponding vertex */
+    
+
     public void setEdge(int source , int destination, VertexList vertexList, int number_of_coord, int number_of_vertices)
     {
         if (source > Adjacency_List.size() || destination > Adjacency_List.size())
@@ -46,29 +48,112 @@ public class AdjacencyList
         } else {
             edge = Math.random();
         }
-        
-        if (number_of_vertices > 4096) {
-            if (edge < 0.05) {
+            if (number_of_coord == 0) {    
+               if (number_of_vertices > 32768) {
+                    if (edge < 0.0005) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+               if (number_of_vertices > 8192) {
+                    if (edge < 0.001) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+               if (number_of_vertices > 1024) {
+                    if (edge < 0.01) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 256) {
+                    if (edge < 0.05) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                } else { 
+                    if (edge < 0.4) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+            } 
+            else if (number_of_coord == 2) {    
+                if (number_of_vertices > 4096) {
+                    if (edge < 0.05) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 512) {
+                    if (edge < 0.1) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                } else { 
+                    if (edge < 0.6) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+            } 
+            else if (number_of_coord == 3) {
+               if (number_of_vertices > 4096) {
+                    if (edge < 0.1) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+               if (number_of_vertices > 1024) {
+                    if (edge < 0.15) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+                else if (number_of_vertices > 512) {
+                    if (edge < 0.2) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                } else { 
+                    if (edge < 0.6) {
+                        Vertex vertex1 = new Vertex(destination, edge);
+                        slist.add(vertex1);
+                        Vertex vertex2 = new Vertex(source, edge);
+                        dlist.add(vertex2);
+                    }
+                }
+            }
+
+            else {
                 Vertex vertex1 = new Vertex(destination, edge);
                 slist.add(vertex1);
                 Vertex vertex2 = new Vertex(source, edge);
                 dlist.add(vertex2);
             }
-        }
-        else if (number_of_vertices > 512) {
-            if (edge < 0.1) {
-                Vertex vertex1 = new Vertex(destination, edge);
-                slist.add(vertex1);
-                Vertex vertex2 = new Vertex(source, edge);
-                dlist.add(vertex2);
-            }
-        } else { 
-            if (edge < 0.6) {
-                Vertex vertex1 = new Vertex(destination, edge);
-                slist.add(vertex1);
-                Vertex vertex2 = new Vertex(source, edge);
-                dlist.add(vertex2);
-        }
     }
 
     /* Returns the List containing the vertex joining the source vertex */
