@@ -1,4 +1,9 @@
 // Random MST Java Implementation
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.lang.Math;
 
 public class randmst {
 	public static void main(String args[]) {
@@ -14,32 +19,42 @@ public class randmst {
 
 		AdjacencyList adjacencyList = new AdjacencyList(numpoints);
 
-		adjacencyList = adjacencyList.init(numpoints, dimension)
+		adjacencyList = adjacencyList.init(numpoints, dimension);
 
 		// begin Prim's
-		int[] dist = new int[numpoints];
+		double[] dist = new double[numpoints];
 		int[] prev = new int[numpoints];
 
-		int[] s = new int[numpoints];
-		MinBHeap heap = new MinBHeap(numpoints*numpoints);
-		heap.insert(new heapNode(0, 0, 0));
+		// s[0] == true means vertex 0 is in S
+		boolean[] s = new boolean[numpoints];
 
-		while (heap.heapSize != 0) {
-			Vertex v = heap.deletemin(); */
-			/* Add v to S */
-			List<Double> edges_of_v = adjacencyList.getEdge(v);
+		MinBHeap heap = new MinBHeap(numpoints);
+		heap.insert(new Vertex(0, 0.0));
 
-			for(int i = 0; i < numpoints; ++i) {
-				/* if i not in S*/
-				if (dist[i] > edges_of_v.get(i)) {
-					dist[i] = edges_of_v.get(i);
-					prev[i] = i;
-					/* Insert w into heap */
-				}
-
-			}
-
+		// initialize dist and prev arrays
+		for (int i = 0; i < numpoints; i++) {
+			dist[i] = Double.MAX_VALUE;
+			prev[i] = -1;
 		}
 
+		while (heap.heapSize != 0) {
+			Vertex v = heap.deletemin(); 
+
+			// adds v to S
+			s[v.v] = true;
+			List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
+
+			for(int i = 0; i < numpoints; ++i) {
+				// if i not in S
+				if (!s[i]) {
+					if (dist[i] > edges_of_v.get(i)) {
+						dist[i] = edges_of_v.get(i);
+						prev[i] = i;
+						/* Insert w into heap */
+						heap.insert(new Vertex(i, dist[i]));
+					}
+				}
+			}
+		}
 	}
 }
