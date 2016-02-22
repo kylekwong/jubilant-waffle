@@ -189,7 +189,15 @@ public class AdjacencyList
             }
         }     
         else if (number_of_coord == 3) {
-           if (number_of_vertices > 4096) {
+            if (number_of_vertices > 8192) {
+                if (edge < 0.08) {
+                    Vertex vertex1 = new Vertex(destination, edge);
+                    slist.add(vertex1);
+                    Vertex vertex2 = new Vertex(source, edge);
+                    dlist.add(vertex2);
+                }
+            }
+            else if (number_of_vertices > 4096) {
                 if (edge < 0.1) {
                     Vertex vertex1 = new Vertex(destination, edge);
                     slist.add(vertex1);
@@ -197,7 +205,7 @@ public class AdjacencyList
                     dlist.add(vertex2);
                 }
             }
-           if (number_of_vertices > 1024) {
+            else if (number_of_vertices > 1024) {
                 if (edge < 0.15) {
                     Vertex vertex1 = new Vertex(destination, edge);
                     slist.add(vertex1);
@@ -241,11 +249,13 @@ public class AdjacencyList
     }
 
     /* Main Function creates an adjancy list for a complete graph */
-    public static AdjacencyList init(int number_of_vertices, int number_of_coord)
+    public static AdjacencyList init(int number_of_vertices, 
+        int number_of_coord)
     {
         int source, destination;
 
-        VertexList vertexList = new VertexList(number_of_vertices, number_of_coord);
+        VertexList vertexList = new VertexList(number_of_vertices, 
+            number_of_coord);
 
         vertexList = vertexList.init(number_of_vertices, number_of_coord);
         
