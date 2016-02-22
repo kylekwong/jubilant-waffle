@@ -20,8 +20,9 @@ public class randmst {
 
 		double avg_weight = 0.0;
 
-		double maxLength = 0; 
+		// double maxLength = 0; 
 
+		// flag == 0 will run normally
 		if (flag == 0) {
 			for (int n = 0; n < numtrials; n++) {
 				// add to final weight of MST
@@ -53,9 +54,9 @@ public class randmst {
 					// adds v to S
 					s[v.v] = true;
 					weight += v.edge;
-					if (v.edge > maxLength) {
-						maxLength = v.edge;
-					}
+					// if (v.edge > maxLength) {
+					// 	maxLength = v.edge;
+					// }
 
 					List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
 
@@ -75,14 +76,14 @@ public class randmst {
 				avg_weight += weight;
 			}
 			avg_weight /= numtrials;
-			System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, 
-				numtrials, dimension, maxLength);
+			System.out.printf("%f %d %d %d\n", avg_weight, numpoints, 
+				numtrials, dimension);
 
 		}
-
+		// flag == 1 will run for all powers of 2 >= numpoints and <= 2^16
 		else if (flag == 1) {
 			while (numpoints <= 65536) {
-				maxLength = 0;
+				// maxLength = 0;
 				for (int n = 0; n < numtrials; n++) {
 					// add to final weight of MST
 					double weight = 0.0;
@@ -113,9 +114,9 @@ public class randmst {
 						// adds v to S
 						s[v.v] = true;
 						weight += v.edge;
-						if (v.edge > maxLength) {
-							maxLength = v.edge;
-						}
+						// if (v.edge > maxLength) {
+						// 	maxLength = v.edge;
+						// }
 
 						List<Vertex> edges_of_v = adjacencyList.getEdge(v.v);
 
@@ -135,8 +136,8 @@ public class randmst {
 					avg_weight += weight;
 				}
 				avg_weight /= numtrials;
-				System.out.printf("%f %d %d %d %f\n", avg_weight, numpoints, 
-					numtrials, dimension, maxLength);
+				System.out.printf("%f %d %d %d\n", avg_weight, numpoints, 
+					numtrials, dimension);
 
 				numpoints *= 2;
 			}
